@@ -1,15 +1,15 @@
 import {PieChart} from "@mui/x-charts";
 import {useEffect, useState} from "react";
-import coin from "./Coin.jsx";
 
 export default function Diagram() {
     const [coins, setCoins] = useState([]);
     useEffect(() => {
-        fetch(`https://api.coincap.io/v2/assets/`)
+        fetch(`https://data-api.coindesk.com/asset/v1/top/list?page=1&page_size=10`)
             .then(response => response.json())
-            .then((json) => setCoins(json.data.slice(0, 10)))  // Corrected: Use json.data
+            .then((json) => setCoins(json.Data.LIST))  // Corrected: Use json.data
             .catch((error) => console.error("Error fetching data:", error));
     }, []);
+    console.log(coins);
     return (
         <>
             <div className="flex flex-col p-4 bg-white rounded-xl max-h-50 max-w-min self-center">
@@ -18,9 +18,9 @@ export default function Diagram() {
                     series={[
                         {
                             data: coins.map((coin) => ({
-                                id: coin.name,
-                                value: parseFloat(coin.marketCapUsd),
-                                label: coin.name,
+                                id: coin.ID,
+                                value: parseFloat(coin.CIRCULATING_MKT_CAP_USD),
+                                label: coin.URI,
                             })),
                         },
                     ]}

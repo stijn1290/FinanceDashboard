@@ -6,9 +6,9 @@ import CoinOverview from "./components/CoinOverview.jsx";
 export default function App() {
     return (
         <>
-            <div className={"bg-gray-300"}>
+            <div className={"bg-gray-300 justify-center"}>
                 <Header/>
-                <div className={"flex flex-col gap-5 p-2 mt-2"}>
+                <div className={"flex flex-col gap-5 p-2 mt-2 h-screen"}>
                     <Routes>
                         <Route path="/" element={<Home/>}/>
                         <Route path="coin" element={<CoinOverview/>}></Route>
